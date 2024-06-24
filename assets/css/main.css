@@ -1,0 +1,62 @@
+body {
+  background-color: #15141a;
+}
+
+.coverlist {
+  width: 80%;
+  display: flex;
+  gap: 1.5%;
+  margin: 150px auto;
+  padding: 0;
+  list-style: none;
+}
+.coverlist .coverlist__item {
+  transform: scale(1.1);
+  filter: brightness(1);
+}
+.coverlist:hover .coverlist__item {
+  filter: brightness(0.4);
+  transform: scale(1);
+}
+.coverlist__item {
+  flex: 1 0 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+  cursor: pointer;
+  aspect-ratio: 4/5;
+  filter: brightness(0.2);
+  background-size: cover;
+  background-position: center;
+}
+.coverlist__item:hover {
+  transform: scale(1.4) !important;
+  filter: brightness(1) !important;
+  z-index: 3;
+  box-shadow: 0 0 40px rgb(0, 0, 0);
+}
+.coverlist__item:hover + * {
+  transform: scale(1.2) translateX(24px) !important;
+  filter: brightness(0.6) !important;
+  z-index: 2;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+.coverlist__item:hover + * + * {
+  transform: scale(1.1) translateX(16px) !important;
+  filter: brightness(0.4) !important;
+  z-index: 1;
+}
+.coverlist__item:has(+ *:hover) {
+  transform: scale(1.2) translateX(-24px) !important;
+  filter: brightness(0.6) !important;
+  z-index: 2;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+.coverlist__item:has(+ * + *:hover) {
+  transform: scale(1.1) translateX(-16px) !important;
+  filter: brightness(0.4) !important;
+  z-index: 1;
+}
+
+/*# sourceMappingURL=main.css.map */

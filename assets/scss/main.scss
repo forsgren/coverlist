@@ -1,0 +1,84 @@
+body {
+    background-color: #15141a;
+}
+
+.coverlist {
+    width: 80%;
+    display: flex;
+    gap: 1.5%;
+    margin: 150px auto;
+    padding: 0;
+    list-style: none;
+
+    .coverlist__item {
+        transform: scale(1.1);
+        filter: brightness(1);
+    }
+
+    &:hover {
+        .coverlist__item {
+            filter: brightness(0.4);
+            transform: scale(1);
+        }
+    }
+
+    &__item {
+        flex: 1 0 0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        transition: all 0.2s;
+        cursor: pointer;
+        aspect-ratio: 4/5;
+        filter: brightness(0.2);
+        background-size: cover;
+        background-position: center;
+
+        // A regular hover item, nothing special
+        &:hover {
+            transform: scale(1.4) !important;
+            filter: brightness(1) !important;
+            z-index: 3;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 1);
+
+            // The first item to the right
+            // Selector explanation:
+            // "An item that is preceded by a hovered item"
+            & + * {
+                transform: scale(1.2) translateX(24px) !important;
+                filter: brightness(0.6) !important;
+                z-index: 2;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            }
+
+            // The second item to the right
+            // Selector explanation:
+            // "An item that is preceded by any item that is preceeded by a hovered item"
+            & + * + * {
+                transform: scale(1.1) translateX(16px) !important;
+                filter: brightness(0.4) !important;
+                z-index: 1;
+            }
+        }
+
+        // The first item to the left
+        // Selector explanation:
+        // "An item that has a hovered item sibling one step after it"
+        &:has(+ *:hover) {
+            transform: scale(1.2) translateX(-24px) !important;
+            filter: brightness(0.6) !important;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        // The second item to the left
+        // Selector explanation:
+        // "An item that has a hovered item sibling two step after it"
+
+        &:has(+ * + *:hover) {
+            transform: scale(1.1) translateX(-16px) !important;
+            filter: brightness(0.4) !important;
+            z-index: 1;
+        }
+    }
+}
